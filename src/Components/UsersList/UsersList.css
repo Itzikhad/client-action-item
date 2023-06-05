@@ -1,0 +1,102 @@
+
+/* UsersList.css */
+
+.no-data {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #888;
+  text-align: center;
+  padding: 1rem;
+}
+
+.user-list-container {
+  box-shadow: 5px 0px 3px 3px #f1f1f1;
+  border-radius: 15px;
+  padding: 14px;
+  max-width: 90%;
+}
+
+.user-list {
+  max-height: 500px;
+  overflow-y: scroll;
+  margin: 0px 5px 0px 0px;
+  max-width: 450px;
+  cursor: grab;
+}
+
+.user-list::-webkit-scrollbar {
+  width: 18px; /* width of the scrollbar */
+  /* border-color: black; */
+  border-radius: 8px;
+  box-shadow: 0px 0px 1px 1px #f1f1f1;
+  /* box-shadow: 0px 0px 2px 1px rgb(32, 34, 34); Add shadow around the thumb */
+  /* border-style: solid; */
+}
+
+.user-list::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* color of the scrollbar track */
+  border-radius: 8px; /* rounded corners of the scrollbar track */
+  border-color: rgb(31, 34, 34);
+  border-style: solid;
+  box-shadow: 0px 0px 2px 1px rgb(32, 34, 34);
+  /* border-width: 4px; */
+  /* margin: 0px 20px 0px 20px; */
+  /* padding: 20px; */
+  /* margin: 20px; */
+  
+}
+
+.user-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 18px;
+  border: none;
+  box-shadow: 0px 0px 2px 1px rgb(31, 34, 34); 
+}
+
+.user-list::-webkit-scrollbar-thumb:hover {
+  background-color: #333;
+  box-shadow: inset 4px 4px 2px 1px #444;
+}
+
+.list-header-container {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  /* margin-left: 2px; */
+  padding: 10px 20px 10px 0px;
+  opacity: 1;
+  cursor: default;
+  /* box-shadow: 0px 0px 12px 1px #f1f1f1; */
+
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.list-header-container::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  padding-top: 20px;
+  border-bottom: 1px solid rgb(31, 34, 34, 0.5); 
+}
+
+.list-header-primary {
+  font-size: 2rem;
+  font-weight: bold;
+  justify-content: end;
+  justify-items: end;
+  color: #555;
+  text-shadow: 1px 1px 3px #444;
+  text-decoration: dotted;
+}
+
+.list-header-secondary {
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  color: #888;
+}
+
+

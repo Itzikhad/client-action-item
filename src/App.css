@@ -1,4 +1,18 @@
 .App {
+  display: flex;
+  margin: 15px;
+  font-family: 'Inter', sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", 'Roboto', 'Ubuntu', sans-serif; */
+  flex-direction: row;
+  border: 5px solid rgb(66, 66, 66, 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 2px 2px 17px #424242;
+  /* font-size: larger; */
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +49,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

@@ -1,0 +1,71 @@
+.no-data {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #888;
+  text-align: center;
+  padding: 1rem;
+}
+
+.user {
+  display: flex;
+  /* flex-direction: column; */
+  /* flex: 1; */
+  align-items: center;
+  padding: 12px;
+  padding-right: 100px;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 93%;
+  margin: 10px 17px 10px 0px;
+}
+
+.user:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  /* margin-right: 20px; */
+  /* padding: 12px 8px 12px 8px; */
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  margin-right: 6px;
+  /* overflow: hidden; */
+  border-radius: 50%;
+}
+
+.user-avatar img {
+  /* width: 100%; */
+  /* margin-left: 10px; */
+  margin-right: 10px;
+  /* height: 100%; */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-details {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 90%;
+}
+
+.user-primary {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* max-width: 500px; */
+}
+
+.user-secondary {
+  font-size: 14px;
+  color: #666;
+}
