@@ -15,7 +15,7 @@ After cloning the repository and installed all depedencies run **`npm start`**
 ### App Structure
 * the main app component holds two screens components, showing them in accordance to requirement
 * the first screen component a 
-    * get stocks button which render a users list with a data from the callback about 10 random users
+    * get users button which render a users list with a data from the callback about 10 random users
     * a list component of clickable elements presenting user data in accordance to requirements, empty by default
     * when an item clicked the view goes to screen 2
     * a search block searching by first name each argument written in the input slot, if there is a match presents those who include the search string, otherwise present the default full list

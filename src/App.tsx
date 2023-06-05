@@ -142,7 +142,7 @@ function App() {
       <div className="App">
         {!selectedUser ? (<div style={{ justifyContent: 'center', alignContent: 'center', padding: '2px', height: '30%', overflow: 'auto' }}>
           <Button variant="contained" onClick={getStocksHandler} sx={{ margin: '15px', backgroundColor: '#757575' }}>
-            Get Stocks
+            Get Users
           </Button>
           <div>
             <TextField
