@@ -102,7 +102,10 @@ function App() {
   const handleSearch = () => {
     // Filter users based on the search argument
     const filtered: User[] = !users ? [] : users.filter((user: User) => {
-      let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
+      let first = user ? user.first_name.toLowerCase() : ''
+      let last = user ? user.last_name.toLowerCase() : ''
+      let str = first+' '+last;
+      let includes = str.includes(searchValue.toLowerCase());
       return includes
     }
     );

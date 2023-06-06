@@ -18,7 +18,7 @@ After cloning the repository and installed all depedencies run **`npm start`**
     * get users button which render a users list with a data from the callback about 10 random users
     * a list component of clickable elements presenting user data in accordance to requirements, empty by default
     * when an item clicked the view goes to screen 2
-    * a search block searching by first name each argument written in the input slot, if there is a match presents those who include the search string, otherwise present the default full list
+    * a search block searching by full name each argument written in the input slot, if there is a match presents those who include the search string, otherwise present the default full list
 * screen 2 component(UserProfile) shows a clicked user from the list in screen 1, presents data as required, with name editing on both screens by update.
     * holds a back button returning to screen 1
 * 
@@ -28,7 +28,9 @@ After cloning the repository and installed all depedencies run **`npm start`**
 
 
 ## **NOTES:** 
-
+* the search behaviour is when no user matches or no search string, the search to present the full users list
+* when there is a match the filtered list is presented
+* the search is by full name, so i assumed one space is allowed between first and last name
 ---
 
 ---
