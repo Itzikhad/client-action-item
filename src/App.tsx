@@ -52,6 +52,7 @@ function App() {
           }
         })
         setUsers([...users_arr])
+        setFilteredUsers([]);
       })
       .catch((error) => {
         console.log("error fetching users:", error)
@@ -127,7 +128,7 @@ function App() {
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // event.preventDefault()
+    event.preventDefault()
     // event.stopPropagation()
     // console.log("event.target.value", event.target.value)
     setSearchValue(event.target.value)
