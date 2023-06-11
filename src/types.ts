@@ -8,7 +8,9 @@ interface Address {
     country: string;
 }
 
-export interface User {
+export type User = UserProfile|null
+
+export interface UserProfile {
     id: number;
     profile_img_url: string;
     profile_thumbnail_url: string;

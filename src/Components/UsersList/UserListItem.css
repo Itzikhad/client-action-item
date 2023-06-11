@@ -30,7 +30,7 @@
   /* padding: 12px 8px 12px 8px; */
 }
 
-.user-avatar {
+.user .user-avatar {
   width: 48px;
   height: 48px;
   margin-right: 6px;
@@ -38,7 +38,7 @@
   border-radius: 50%;
 }
 
-.user-avatar img {
+.user .user-avatar img {
   /* width: 100%; */
   /* margin-left: 10px; */
   margin-right: 10px;
@@ -47,7 +47,7 @@
   object-fit: cover;
 }
 
-.user-details {
+.user .user-details {
   margin-left: 5px;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,7 @@
   max-width: 90%;
 }
 
-.user-primary {
+.user .user-primary {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -65,7 +65,7 @@
   /* max-width: 500px; */
 }
 
-.user-secondary {
+.user .user-secondary {
   font-size: 14px;
   color: #666;
 }

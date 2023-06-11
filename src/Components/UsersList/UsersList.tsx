@@ -8,7 +8,7 @@ function UsersList(props: { users: User[] | null; }) {
 
   const users: User[]|null = props.users;
   const context: Context|null = useContext(UserContext);
-  if (!users || !context) return (<div className="no-data">No data available</div>);
+  if (!users || !context || !users?.length) return (<div className="no-data">No data available</div>);
   const handleItemClick = (user: User) => {
     context?.setSelectedUser(user);
   };

@@ -4,14 +4,26 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { User } from '../../types';
 
-const UserProfile = (props: { user: User | null, 
-    onUpdateClick: (updatedUser: User | null) => void, 
-    onBack: ()=>void}) => {
+type UserProfileProps = {
+    user: User;
+    onUpdateClick: (updatedUser: User) => void;
+    onBack: () => void;
+}
+
+const UserProfile = (props: UserProfileProps) => {
 
     const initial_name = { first_name: '', last_name: '' };
     let user = props.user
     const [editing, setEditing] = useState(false);
     const [updatedName, setUpdatedName] = useState(initial_name);
+
+    if (!user) {
+        return (<div className="user-profile">
+            <div className='no-data'>
+                No data available
+            </div>
+        </div>);
+    }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -30,10 +42,6 @@ const UserProfile = (props: { user: User | null,
         props.onUpdateClick(updated);
     };
 
-    if (!user) {
-        return <div className="no-data">No data available</div>;
-    }
-
     const address = user.address;
 
     let header = (<div className="user-header">
@@ -42,8 +50,11 @@ const UserProfile = (props: { user: User | null,
     </div>)
 
     let footer = (<div className="user-footer">
-        <Button variant="contained" disabled={editing} onClick={() => setEditing(true)} sx={{ margin: '5px', backgroundColor: '#757575' }}>
+        <Button variant="contained" disabled={editing} onClick={() => setEditing(true)}>
             Edit
+        </Button>
+        <Button variant="contained" color="primary" onClick={props.onBack}>
+                Back
         </Button>
     </div>)
 
@@ -102,9 +113,6 @@ const UserProfile = (props: { user: User | null,
             {header}
             {body}
             {footer}
-            <Button variant="contained" color="primary" onClick={props.onBack}>
-                Back
-            </Button>
         </div>
     );
 };
