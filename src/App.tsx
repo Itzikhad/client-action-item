@@ -135,26 +135,29 @@ function App() {
   };
 
   const handleUpdatedUser = (updatedUser: User | null) => {
-    const updatedUsers: User[] = !users ? [] : users.map((user: User) =>
-      user?.id === updatedUser?.id ? updatedUser : user
-    );
+    const updatedUsers: User[] = !users ? [] : users.map((user: User) => user?.id === updatedUser?.id ? updatedUser : user);
     const filtered: User[] = !users ? [] : users.filter((user: User) => {
       let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
       return includes
-    }
-    );
+    });
+
     setFilteredUsers([]);
     setSearchValue("");
     if (updatedUsers) setUsers(updatedUsers);
     if (updatedUser) setSelectedUser(updatedUser);
-    // handleSearch()
 
   };
 
+  useEffect(()=>{
+    const filtered_users: User[] = !users ? [] : users.filter((user: User) => {
+      let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
+      return includes
+    });
+    setFilteredUsers(filtered_users)
+  }, [searchValue])
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     event.preventDefault()
-    // event.stopPropagation()
-    // console.log("event.target.value", event.target.value)
     setSearchValue(event.target.value)
   }
 
@@ -178,14 +181,15 @@ function App() {
               label="Search users"
               value={searchValue}
               onChange={handleSearchChange}
+              sx={{marginBottom: '2rem'}}
             />
-            <Button variant="contained" onClick={handleSearch} sx={{ margin: '5px', backgroundColor: '#757575', fontSize: "12px" }}>
+            {/* <Button variant="contained" onClick={handleSearch} sx={{ margin: '5px', backgroundColor: '#757575', fontSize: "12px" }}>
               Search By First Name
-            </Button>
+            </Button> */}
           </div>
           <UsersList users={filteredUsers && filteredUsers.length > 0 ? filteredUsers : users} />
         </div>
-          <div style={{ padding: "5px", margin: '5px', justifyContent: 'center', display: 'flex', alignItems: 'center', width: '60%', }}>
+          <div style={{ padding: "5px", margin: '5px', justifyContent: 'center', display: 'flex', alignItems: 'center', width: '80%', }}>
             <UserProfile user={selectedUser} onUpdateClick={handleUpdatedUser} onBack={handleBack} />
             {/* <Pagination postsPerPage={3} totalPosts={10} paginate={paginate}/> */}
           </div>

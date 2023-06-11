@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    align-self: flex-start;
   }
   
   .user-header img {
