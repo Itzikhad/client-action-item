@@ -13,6 +13,6 @@ code {
     monospace;
 }
 
-html, #app, #app>div {
+html, #root {
   height: 100%
 }

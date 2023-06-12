@@ -6,7 +6,7 @@ function UserListItem(props: { user: User|null, onItemClick: (user: User) => voi
   // const { user, onItemClick, numSubordinates } = props;
   const { user, onItemClick } = props;
   if (!user || user.show==false) return (<div className="no-data"></div>);
-  let displayStyle = user.show ? 'flex' : 'none';
+
   return (
     <div className="user" onClick={() => onItemClick(user)}>
       <div className="user-avatar">

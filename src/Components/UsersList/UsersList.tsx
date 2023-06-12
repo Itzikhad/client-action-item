@@ -1,14 +1,33 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./UsersList.css";
 import { UserContext } from "../../App";
 import UserListItem from "./UserListItem";
 import { User, Context } from "../../types";
+import { Pagination } from "@mui/material";
 
-function UsersList(props: { users: User[] | null; }) {
+type UserListProps = {
+  users: User[];
+  usersPerPage: number;
+}
 
-  const users: User[]|null = props.users;
+function UsersList(props: UserListProps) {
+
+  const users: User[] = props.users;
   const context: Context|null = useContext(UserContext);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  
   if (!users || !context || !users?.length) return (<div className="no-data">No data available</div>);
+  
+  let totalPages: number = Math.ceil(users.length/props.usersPerPage);
+  let endIndex = pageNumber*props.usersPerPage;
+  let startIndex = endIndex-props.usersPerPage;
+
+  let currentUsers = users.slice(startIndex, endIndex)
+
+  // useEffect(()=> {
+
+  // }, [pageNumber])
+
   const handleItemClick = (user: User) => {
     context?.setSelectedUser(user);
   };
@@ -19,7 +38,7 @@ function UsersList(props: { users: User[] | null; }) {
           <span className="list-header-primary">{`Users List`}</span>
         </div>
         <div className="user-list">
-          {users && users.map((user: User, index: number) => (
+          {users.map((user: User, index: number) => (
             <UserListItem
               key={index}
               user={user}
@@ -27,6 +46,7 @@ function UsersList(props: { users: User[] | null; }) {
             />
           ))}
         </div>
+        <Pagination count={totalPages} onChange={(event: React.ChangeEvent<unknown>, page: number) => setPageNumber(page)}/>
       </div>
   );
 }

@@ -4,9 +4,43 @@ import './App.css';
 import axios from 'axios';
 import UsersList from './Components/UsersList/UsersList';
 import { User, Context } from './types';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField, Pagination } from '@mui/material';
 import UserProfile from './Components/UserProfile/UserProfile';
-import Pagination from './Components/Pagination'
+// import Pagination from './Components/Pagination'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ScreenOne from './ScreenOne';
+
+export const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+  },
+});
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    neutral?: PaletteOptions['primary'];
+  }
+}
+
+// @babel-ignore-comment-in-output Update the Button's color prop options
+declare module '@mui/material/TextField' {
+  interface TextFieldPropsColorOverrides {
+    neutral: true;
+  }
+}
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true;
+  }
+}
 
 
 
@@ -74,7 +108,6 @@ function App() {
   const [selectedUser, setSelectedUser] = useState<User>(null)
   const [searchValue, setSearchValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
-  const [pageNumber, setPageNumber] = useState<number>(1);
 
   const getStocksHandler = (event: { preventDefault: () => void; }) => {
     event.preventDefault()
@@ -136,10 +169,10 @@ function App() {
 
   const handleUpdatedUser = (updatedUser: User | null) => {
     const updatedUsers: User[] = !users ? [] : users.map((user: User) => user?.id === updatedUser?.id ? updatedUser : user);
-    const filtered: User[] = !users ? [] : users.filter((user: User) => {
-      let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
-      return includes
-    });
+    // const filtered: User[] = !users ? [] : users.filter((user: User) => {
+    //   let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
+    //   return includes
+    // });
 
     setFilteredUsers([]);
     setSearchValue("");
@@ -149,9 +182,11 @@ function App() {
   };
 
   useEffect(()=>{
-    const filtered_users: User[] = !users ? [] : users.filter((user: User) => {
-      let includes = user?.first_name.toLowerCase().includes(searchValue.toLowerCase());
-      return includes
+    const filtered_users: User[] = !searchValue||!users ? [] : users.filter((user: User) => {
+      let first = user ? user.first_name.toLowerCase() : ''
+      let last = user ? user.last_name.toLowerCase() : ''
+      let str = first+' '+last;
+      return str.includes(searchValue.toLowerCase());
     });
     setFilteredUsers(filtered_users)
   }, [searchValue])
@@ -165,35 +200,21 @@ function App() {
     setSelectedUser(null);
   };
 
-  const paginate = (pageNum: number) => {
-    setPageNumber(pageNum)
-  }
+  // const paginate = (pageNum: number) => {
+  //   setPageNumber(pageNum)
+  // }
 
   return (
     <UserContext.Provider value={{ users, selectedUser, setSelectedUser }}>
+      <ThemeProvider theme={theme}>
       <div className="App">
-        <div style={{ justifyContent: 'center', alignContent: 'center', padding: '2px', height: '30%', overflow: 'auto' }}>
-          <Button variant="contained" onClick={getStocksHandler} sx={{ margin: '15px', backgroundColor: '#757575' }}>
-            Get Users
-          </Button>
-          <div>
-            <TextField
-              label="Search users"
-              value={searchValue}
-              onChange={handleSearchChange}
-              sx={{marginBottom: '2rem'}}
-            />
-            {/* <Button variant="contained" onClick={handleSearch} sx={{ margin: '5px', backgroundColor: '#757575', fontSize: "12px" }}>
-              Search By First Name
-            </Button> */}
-          </div>
-          <UsersList users={filteredUsers && filteredUsers.length > 0 ? filteredUsers : users} />
+        <ScreenOne getStocksHandler={getStocksHandler} handleSearchChange={handleSearchChange} searchValue={searchValue} filteredUsers={filteredUsers} users={users} />
+        <div style={{ padding: "5px", margin: '5px', justifyContent: 'center', display: 'flex', alignItems: 'center', minWidth: '70%', maxWidth: '70%' }}>
+          <UserProfile user={selectedUser} onUpdateClick={handleUpdatedUser} onBack={handleBack} />
+          {/* <Pagination postsPerPage={3} totalPosts={10} paginate={paginate}/> */}
         </div>
-          <div style={{ padding: "5px", margin: '5px', justifyContent: 'center', display: 'flex', alignItems: 'center', width: '80%', }}>
-            <UserProfile user={selectedUser} onUpdateClick={handleUpdatedUser} onBack={handleBack} />
-            {/* <Pagination postsPerPage={3} totalPosts={10} paginate={paginate}/> */}
-          </div>
       </div>
+      </ThemeProvider>
     </UserContext.Provider >
   );
 }

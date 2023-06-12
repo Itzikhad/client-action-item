@@ -47,6 +47,13 @@
     margin: 0;
   }
   
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+  }
   .user-details .detail-row {
     display: flex;
     margin-bottom: 1rem;
